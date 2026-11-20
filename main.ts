@@ -1,36 +1,47 @@
-// main.ts — entrypoint for the make.fun environment.
+// Vice Platinum — hand-in program for the gta6-trophy-guide-01 entry (Node 22, standard library only).
 //
-// Behaviour: copies the static app (app/) and the screenshots
-// (screenshots/) into the output directory, then writes dossier.json
-// through the kit's buildDossier so the judging harness sees exactly
-// the bytes the app ships. buildDossier itself refuses to run when the
-// app, the screenshots or the dossier would break the bounty limits,
-// so a clean exit here means the entry is inside every cap.
+// The guide itself is the static web app in app/ (open app/index.html in a browser; it runs fully
+// offline). This program's whole job is to hand that app in: copy app/ and screenshots/ into the
+// output directory and write the dossier the judge reads, using the kit's vendored library.
+// vendor/makefun-frontend.ts is left exactly as the kit ships it — the scorer rebuilds the dossier
+// with its own copy and compares byte for byte.
+//
+// Run it locally the same way the grader does, with MAKEFUN_OUTPUT_DIR standing in for /output:
+//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, rmSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import { buildDossier } from "./vendor/makefun-frontend.ts";
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { buildDossier } from './vendor/makefun-frontend.ts';
 
-const here = dirname(fileURLToPath(import.meta.url));
-const out = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+const repoDir = dirname(fileURLToPath(import.meta.url));
+const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-// The dossier builder walks the app directory in place; the plain file
-// copies below are what the harness serves and inspects.
-for (const name of ["app", "screenshots"]) {
-  const target = join(out, name);
-  rmSync(target, { recursive: true, force: true });
-  cpSync(join(here, name), target, { recursive: true });
+// The scorer's caps for this bounty, passed to the dossier builder so an entry the
+// scorer would refuse fails here first, in the open, instead of at grading time.
+const DOSSIER_LIMITS = {
+  text_max_bytes: 163840,
+  screenshots: { max: 4, max_bytes: 262144 },
+  app_max_files: 993,
+  app_max_bytes: 50331648,
+} as const;
+
+function handIn(): void {
+  mkdirSync(outputDir, { recursive: true });
+
+  // The app: plain static files, copied as they are.
+  cpSync(join(repoDir, 'app'), join(outputDir, 'app'), { recursive: true });
+
+  // The screenshots the judge sees the app through (3 or 4, first by name is the cover).
+  const shotsDir = join(outputDir, 'screenshots');
+  mkdirSync(shotsDir, { recursive: true });
+  if (existsSync(join(repoDir, 'screenshots'))) {
+    cpSync(join(repoDir, 'screenshots'), shotsDir, { recursive: true });
+  }
+
+  // buildDossier returns the dossier's bytes; writing them is this program's job.
+  const dossierBytes = buildDossier(outputDir, DOSSIER_LIMITS);
+  writeFileSync(join(outputDir, 'dossier.json'), dossierBytes);
 }
 
-// buildDossier returns the dossier bytes; writing them ourselves is
-// what puts dossier.json in the output for the scorer to compare.
-const dossier = buildDossier(out, {
-  text_max_bytes: 163_840,
-  screenshots: { max: 4, max_bytes: 262_144 },
-  app_max_files: 993,
-  app_max_bytes: 50_331_648,
-});
-writeFileSync(join(out, "dossier.json"), dossier);
-
-console.log(`vice-platinum: app, screenshots and dossier.json written to ${out}`);
+handIn();

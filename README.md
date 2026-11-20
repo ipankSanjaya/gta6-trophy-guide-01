@@ -1,5 +1,3 @@
-# Vice Platinum — GTA VI Trophy Guide & Tracker
-
 [![make.fun · gta6-trophy-guide-01](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 [![rank](https://make.fun/badge/gta6-trophy-guide-01/ipankSanjaya/gta6-trophy-guide-01/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
 [![reward](https://make.fun/badge/gta6-trophy-guide-01/ipankSanjaya/gta6-trophy-guide-01/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
@@ -7,72 +5,72 @@
 An entry for the make.fun bounty
 **[Build the best GTA 6 trophy guide](https://make.fun/bounty/gta6-trophy-guide-01)**.
 
-Vice Platinum is a complete, offline guide and tracker for all **55 Grand
-Theft Auto VI PlayStation 5 trophies** (1 platinum, 2 gold, 6 silver,
-46 bronze, 28 of them hidden). Every trophy carries its official
-PlayStation name, description and grade, plus a guide written in this
-app's own words — with the sources it draws on cited beside it, by name
-and link, so any claim can be checked against the original.
+# Vice Platinum — GTA VI Trophy Guide & Tracker
+
+A free, offline, single-page guide and tracker for all **55 PlayStation 5
+trophies** of Grand Theft Auto VI. Open it in a browser and it works with
+the network off: no accounts, no syncing, no ads — your progress never
+leaves your machine.
 
 ## What it does
 
-- **Full tracker.** Tick trophies off as you earn them; progress saves
-  in your browser's localStorage, with an overall counter, per-grade
-  counts and a progress bar. Export your progress to a JSON file,
-  import it back on another device, or reset it.
-- **Guides with receipts.** Each trophy's page shows the official
-  description, a plain-words guide (what, where, how, and what to watch
-  out for), steps where a sequence matters, and its sources —
-  Exophase and PSNProfiles for the official list, PowerPyx and
-  games.gg for methods and roadmap facts.
-- **Counters for the grinds.** The 15 trophies PlayStation tracks by
-  number (250 stunts, 100 WAiNK selfies, $250,000 laundered, …) get a
-  stepper and a numeric field; hitting the target ticks the trophy off.
-- **Filters that match the list.** Kind chips (Story, Missable,
-  Collectibles, Activities, Online — the list is entirely offline, so
-  Online honestly reads 0), a grade filter, text search, hide-earned,
-  and per-trophy notes.
-- **Spoiler protection.** Turn it on and unearned story and hidden
-  trophies show as "Hidden trophy", with names, descriptions and guides
-  blurred until earned — the way PSN itself treats them.
-- **Platinum roadmap.** Five stages in playing order — story, strangers
-  & finales, collectibles & exploration, activities & grinds, the 100%
-  push — each with its own progress count and the trophies it holds.
-- **Missables page.** The list has exactly one risky trophy:
-  Positive Mental Attitude, which hinges on a Chapter 1 meditation
-  invitation at Jason's house. The page explains the trap, why
-  everything else is safe, and how to protect the run (rotate manual
-  saves; cheats disable trophies).
-- **Next Up.** The header always names the sensible next trophy,
-  starting with the missable while it is still gettable.
+- **The full official list.** Every trophy with the name, description and
+  grade PlayStation publishes (1 platinum, 2 gold, 6 silver, 46 bronze,
+  28 of them hidden), checked against the published lists.
+- **A real tracker.** Tick trophies off and the checklist persists in
+  `localStorage`. Counted trophies (250 stunts, 100 WAiNK spots, 42
+  Shooting Range golds, $250,000 of laundered Marked Bills…) get steppers
+  that keep your place and auto-earn at the target. Per-trophy notes,
+  one-click **export/import** of your progress as a JSON file, and a reset.
+- **Filters that match how you play.** Kind chips — Story (19), Missable
+  (1), Collectibles (5), Activities (30), Online (0 — the list is honestly
+  offline-only) — plus grade filter, text search and hide-earned.
+- **Spoiler protection.** Flip it on and unearned story and hidden
+  trophies are masked in the list *and* in the guide pane — names,
+  descriptions and guides stay hidden until you earn them.
+- **A roadmap to the platinum.** Five stages built from the official
+  descriptions — the chapters and missions they name, the collectibles
+  and the counts — each with live per-stage progress: about 200 hours,
+  difficulty ~4/10, one playthrough.
+- **The missable, flagged loudly.** The list has exactly one potentially
+  missable trophy, *Positive Mental Attitude*, and it hinges on a
+  Chapter 1 moment at Jason's house. The Missables tab walks through it
+  step by step.
+- **Guides in our own words, sources cited.** Every trophy's guide is
+  written for this app and names its sources beside it — Exophase,
+  PSNProfiles, PowerPyx, games.gg, KeenGamer — linked, never copied.
+  Where launch-week guides had no verified method (a couple of the riddle
+  trophies), the guide says so instead of inventing one.
+- **Next Up.** A planner that orders your smartest next moves: the
+  missable first, then the counters closest to popping, then the next
+  story beats.
+
+The look is an original neon-noir take on Vice City — sunset gradient,
+palm silhouettes, trophy cups — all drawn in inline SVG and CSS. No
+Rockstar Games logo, artwork or screenshots are used anywhere.
 
 ## Run it
 
-The app is plain static files under `app/` — no build step, no network
-requests; trophy data loads from `app/data/trophies.json` beside the
-page. Serve the folder with anything:
+Serve `app/` with any static file server and open `index.html`:
 
 ```sh
-node serve.ts            # http://localhost:8080 (uses only Node's stdlib)
-# or: python3 -m http.server -d app 8080
+node serve.ts            # serves app/ at http://localhost:8080
 ```
 
-Then open the page, and optionally install it as a home-screen app —
-it keeps working on a plane, which is where 200-hour Platinums happen.
+Node 22 runs the TypeScript directly; there is no build step and nothing
+to install. The app fetches only its own `app/data/trophies.json` at
+runtime.
 
-`main.ts` is the bounty entrypoint: it copies `app/` and `screenshots/`
-to the output directory and writes `dossier.json` with the vendored
-make.fun library (`vendor/makefun-frontend.ts`, kept byte-identical to
-the kit's).
+## How the entry is handed in
 
-## Screenshots
+`main.ts` (Node 22, standard library only) copies `app/` and
+`screenshots/` to the output directory and writes `dossier.json` with
+`buildDossier` from the vendored make.fun library
+(`vendor/makefun-frontend.ts`, the kit's copy, unchanged):
 
-1. `screenshots/1-tracker-guide.jpg` — the tracker mid-run: progress,
-   filters, and a counted trophy's guide, steps, counter and note.
-2. `screenshots/2-roadmap.jpg` — the five-stage platinum roadmap.
-3. `screenshots/3-spoiler-story.jpg` — spoiler protection on: earned
-   story trophies readable, the rest masked, sources still cited.
-4. `screenshots/4-missables.jpg` — the one missable, explained.
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+```
 
 ## New to make.fun?
 
@@ -85,7 +83,6 @@ and signing up through my referral link helps me there:
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Vice Platinum is an unofficial fan guide;
-Grand Theft Auto, GTA VI and Rockstar Games are trademarks of Take-Two
-Interactive. Trophy names and descriptions are PlayStation's official
-list; no Rockstar artwork is used.
+MIT — see `LICENSE`. The trophy names and descriptions are PlayStation's;
+everything else here, guides included, is free to reuse under that
+license.

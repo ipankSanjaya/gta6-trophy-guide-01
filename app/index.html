@@ -4,91 +4,109 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vice Platinum — GTA VI Trophy Guide &amp; Tracker</title>
-<meta name="description" content="A complete offline guide and tracker for all 55 Grand Theft Auto VI PlayStation 5 trophies: cited per-trophy guides, a platinum roadmap, missable warnings and progress that saves on your device.">
-<link rel="stylesheet" href="css/guide.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="hero">
-  <svg class="palms" viewBox="0 0 1440 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <path class="sun" d="M0 118 Q 720 26 1440 118 L1440 190 L0 190 Z"></path>
-    <g class="fronds">
-      <path d="M118 190 q-6-58 10-96 M112 96 q-34-20-62-8 M116 92 q-8-34 12-52 M122 94 q26-26 54-20 M126 100 q34-6 52 12"></path>
-      <path d="M1330 190 q4-66-12-104 M1338 88 q30-24 60-16 M1332 84 q4-34-18-54 M1326 90 q-30-22-56-12 M1322 98 q-36-2-52 16"></path>
+<header class="masthead">
+  <svg class="palms" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2b1055"/>
+        <stop offset="0.55" stop-color="#7597de" stop-opacity="0"/>
+        <stop offset="0.72" stop-color="#ff7e5f"/>
+        <stop offset="1" stop-color="#feb47b"/>
+      </linearGradient>
+    </defs>
+    <rect width="1440" height="150" fill="url(#sunset)"/>
+    <circle cx="720" cy="128" r="52" fill="#ffd76e" opacity="0.9"/>
+    <g fill="#12082e">
+      <path d="M0 150 L0 118 L90 108 L210 122 L360 104 L520 120 L700 110 L880 124 L1040 106 L1200 120 L1330 110 L1440 120 L1440 150 Z"/>
+      <path d="M118 150 q4 -52 -6 -78 q26 6 30 30 q10 -22 -4 -40 q22 12 20 34 q12 -16 30 -18 q-14 12 -12 30 q16 -8 28 0 q-20 4 -24 22 q-4 14 2 20 Z"/>
+      <path d="M1290 150 q-2 -46 8 -70 q-24 8 -26 30 q-12 -20 0 -38 q-20 14 -16 34 q-14 -14 -30 -14 q16 10 16 28 q-16 -6 -28 2 q20 2 26 20 q6 12 2 18 Z"/>
     </g>
-    <path class="skyline" d="M0 190 L0 168 L120 168 L120 150 L210 150 L210 190 L330 190 L330 158 L430 158 L430 190 L560 190 L560 140 L640 140 L640 190 L790 190 L790 162 L900 162 L900 190 L1030 190 L1030 146 L1120 146 L1120 190 L1240 190 L1240 160 L1350 160 L1350 190 L1440 190 L1440 190 Z"></path>
   </svg>
-  <div class="hero-inner">
-    <p class="kicker">Grand Theft Auto VI · PlayStation 5 · all 55 trophies</p>
-    <h1>Vice <span>Platinum</span></h1>
-    <p class="tagline">The complete trophy guide &amp; tracker for Leonida — every guide in plain words, with its sources cited beside it.</p>
+  <div class="masthead-inner">
+    <div class="brand">
+      <svg class="brand-cup" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6h20v6h6a2 2 0 0 1 2 2c0 6.5-4.6 11-10.4 11.6A12 12 0 0 1 27 30.9V36h5v6H16v-6h5v-5.1A12 12 0 0 1 16.4 25.6C10.6 25 6 20.5 6 14a2 2 0 0 1 2-2h6V6zm-4 10c.5 3.4 2.3 5.7 4.6 6.4A17 17 0 0 1 14 16h-4zm28 0h-4a17 17 0 0 1-.6 6.4c2.3-.7 4.1-3 4.6-6.4z" fill="#ffd76e" stroke="#ff2e88" stroke-width="1.6"/></svg>
+      <div>
+        <h1>VICE <span>PLATINUM</span></h1>
+        <p class="tagline">The offline GTA VI trophy guide &amp; tracker — all 55 PlayStation 5 trophies, every guide in our own words with its sources cited.</p>
+      </div>
+    </div>
+    <div class="progress-card">
+      <div class="progress-top"><strong id="progress-count">0 / 55</strong><span id="progress-pct">0%</span></div>
+      <div class="progress-bar"><div id="progress-fill"></div></div>
+      <div class="grade-tallies" id="grade-tallies"></div>
+    </div>
   </div>
 </header>
 
-<section class="progress-card" aria-label="Your progress">
-  <div class="progress-top">
-    <div>
-      <p class="big-count"><span id="earned-count">0</span><span class="of"> / 55 earned</span></p>
-      <p class="grade-line" id="grade-line">0 platinum · 0 gold · 0 silver · 0 bronze</p>
-    </div>
-    <p class="pct" id="pct">0%</p>
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-view="tracker" role="tab">Tracker</button>
+  <button class="tab" data-view="roadmap" role="tab">Roadmap to Platinum</button>
+  <button class="tab" data-view="missables" role="tab">Missables <span class="tab-badge">1</span></button>
+  <button class="tab" data-view="next" role="tab">Next Up</button>
+</nav>
+
+<section id="view-tracker" class="view active">
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search trophies…" aria-label="Search trophies">
+    <div class="chips" id="kind-chips"></div>
+    <label class="ctl">Grade
+      <select id="grade-filter">
+        <option value="all">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+    </label>
+    <label class="ctl switch"><input type="checkbox" id="spoiler-toggle"> Spoiler protection</label>
+    <label class="ctl switch"><input type="checkbox" id="hide-earned"> Hide earned</label>
+    <span class="spacer"></span>
+    <button id="export-btn" class="btn">Export progress</button>
+    <label class="btn file-btn">Import<input id="import-file" type="file" accept="application/json" hidden></label>
+    <button id="reset-btn" class="btn danger">Reset</button>
   </div>
-  <div class="bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="bar"><span id="bar-fill"></span></div>
-  <p class="next-up" id="next-up"></p>
-  <div class="save-row">
-    <button type="button" id="export-btn" class="btn">Export progress</button>
-    <label class="btn file-btn">Import progress<input type="file" id="import-file" accept="application/json,.json" hidden></label>
-    <button type="button" id="reset-btn" class="btn danger">Reset</button>
-    <label class="spoiler-toggle"><input type="checkbox" id="spoiler-toggle"> Spoiler protection — hide story trophies until earned</label>
+  <p class="spoiler-note" id="spoiler-note" hidden>Spoiler protection is ON: unearned story and hidden trophies are masked — names, descriptions and guides stay hidden until you earn them.</p>
+  <div class="tracker-grid">
+    <div class="list-pane">
+      <p class="list-count" id="list-count"></p>
+      <ul class="trophy-list" id="trophy-list"></ul>
+    </div>
+    <article class="detail-pane" id="detail-pane"></article>
   </div>
 </section>
 
-<nav class="tabs" aria-label="Views">
-  <button type="button" class="tab active" data-view="tracker">Tracker</button>
-  <button type="button" class="tab" data-view="roadmap">Platinum roadmap</button>
-  <button type="button" class="tab" data-view="missables">Missables <span class="tab-badge" id="missable-badge">1</span></button>
-</nav>
+<section id="view-roadmap" class="view">
+  <div class="page-head">
+    <h2>Roadmap to the Platinum</h2>
+    <p>Five stages, built from the official trophy descriptions — the chapters and missions they name, the collectibles and the counts PlayStation tracks. Roughly 200 hours in total, difficulty about 4/10, one playthrough, no online trophies. Sources: <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/" target="_blank" rel="noopener">PowerPyx roadmap</a> · <a href="https://www.keengamer.com/articles/guides/gta-6-trophy-guide-platinum-roadmap-all-55-trophies/" target="_blank" rel="noopener">KeenGamer roadmap</a></p>
+  </div>
+  <div id="roadmap-body"></div>
+</section>
 
-<main>
-  <section id="view-tracker">
-    <div class="controls">
-      <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind"></div>
-      <div class="control-row">
-        <input type="search" id="search" placeholder="Search trophies…" aria-label="Search trophies">
-        <select id="grade-filter" aria-label="Filter by grade">
-          <option value="all">All grades</option>
-          <option value="platinum">Platinum</option>
-          <option value="gold">Gold</option>
-          <option value="silver">Silver</option>
-          <option value="bronze">Bronze</option>
-        </select>
-        <label class="check"><input type="checkbox" id="hide-earned"> Hide earned</label>
-      </div>
-      <p class="result-line" id="result-line"></p>
-    </div>
-    <div class="tracker-grid">
-      <ul class="trophy-list" id="trophy-list"></ul>
-      <article class="detail" id="detail" aria-live="polite"></article>
-    </div>
-  </section>
+<section id="view-missables" class="view">
+  <div class="page-head">
+    <h2>Missables — read this before Chapter 2</h2>
+    <p>The whole 55-trophy list contains exactly <strong>one potentially missable trophy</strong>. Everything else can be cleaned up in free-roam after the story. Here is the one moment that cannot.</p>
+  </div>
+  <div id="missables-body"></div>
+</section>
 
-  <section id="view-roadmap" hidden>
-    <div class="prose" id="roadmap-intro"></div>
-    <div id="roadmap-stages"></div>
-  </section>
+<section id="view-next" class="view">
+  <div class="page-head">
+    <h2>Next Up</h2>
+    <p>Your smartest next moves, in order: the missable first while it is still available, then the counters closest to popping, then whatever the roadmap stage you are on asks for.</p>
+  </div>
+  <div id="next-body"></div>
+</section>
 
-  <section id="view-missables" hidden>
-    <div class="prose" id="missables-body"></div>
-  </section>
-</main>
-
-<footer>
-  <p><strong>Vice Platinum</strong> is an unofficial fan guide. Trophy names, descriptions and grades are PlayStation's official list for Grand Theft Auto VI; every guide is written in this app's own words and cites its sources beside it. Works fully offline — your progress never leaves this device.</p>
+<footer class="colophon">
+  <p><strong>Vice Platinum</strong> — a fan-made, offline trophy guide for Grand Theft Auto VI (PS5). Not affiliated with Rockstar Games; no Rockstar artwork is used — every icon here is drawn in CSS/SVG. Official trophy names and descriptions are shown as PlayStation publishes them. Guides are written for this app and cite their sources beside each trophy: <a href="https://www.exophase.com/game/grand-theft-auto-vi-psn/trophies/" target="_blank" rel="noopener">Exophase</a>, <a href="https://psnprofiles.com/trophies/43531-grand-theft-auto-vi" target="_blank" rel="noopener">PSNProfiles</a>, <a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/" target="_blank" rel="noopener">PowerPyx</a>, <a href="https://games.gg/grand-theft-auto-vi/guides/complete-grand-theft-auto-6-trophy-list/" target="_blank" rel="noopener">games.gg</a>, <a href="https://www.keengamer.com/articles/guides/gta-6-trophy-guide-platinum-roadmap-all-55-trophies/" target="_blank" rel="noopener">KeenGamer</a>.</p>
+  <p>Progress is saved only in this browser (localStorage) — export it to a file to keep a backup.</p>
 </footer>
 
-<script src="js/trophies-data.js"></script>
-<script src="js/store.js"></script>
-<script src="js/filters.js"></script>
-<script src="js/views.js"></script>
-<script src="js/app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
