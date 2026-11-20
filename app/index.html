@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Platinum — GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="A complete offline guide and tracker for all 55 Grand Theft Auto VI PlayStation 5 trophies: cited per-trophy guides, a platinum roadmap, missable warnings and progress that saves on your device.">
+<link rel="stylesheet" href="css/guide.css">
+</head>
+<body>
+<header class="hero">
+  <svg class="palms" viewBox="0 0 1440 190" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="sun" d="M0 118 Q 720 26 1440 118 L1440 190 L0 190 Z"></path>
+    <g class="fronds">
+      <path d="M118 190 q-6-58 10-96 M112 96 q-34-20-62-8 M116 92 q-8-34 12-52 M122 94 q26-26 54-20 M126 100 q34-6 52 12"></path>
+      <path d="M1330 190 q4-66-12-104 M1338 88 q30-24 60-16 M1332 84 q4-34-18-54 M1326 90 q-30-22-56-12 M1322 98 q-36-2-52 16"></path>
+    </g>
+    <path class="skyline" d="M0 190 L0 168 L120 168 L120 150 L210 150 L210 190 L330 190 L330 158 L430 158 L430 190 L560 190 L560 140 L640 140 L640 190 L790 190 L790 162 L900 162 L900 190 L1030 190 L1030 146 L1120 146 L1120 190 L1240 190 L1240 160 L1350 160 L1350 190 L1440 190 L1440 190 Z"></path>
+  </svg>
+  <div class="hero-inner">
+    <p class="kicker">Grand Theft Auto VI · PlayStation 5 · all 55 trophies</p>
+    <h1>Vice <span>Platinum</span></h1>
+    <p class="tagline">The complete trophy guide &amp; tracker for Leonida — every guide in plain words, with its sources cited beside it.</p>
+  </div>
+</header>
+
+<section class="progress-card" aria-label="Your progress">
+  <div class="progress-top">
+    <div>
+      <p class="big-count"><span id="earned-count">0</span><span class="of"> / 55 earned</span></p>
+      <p class="grade-line" id="grade-line">0 platinum · 0 gold · 0 silver · 0 bronze</p>
+    </div>
+    <p class="pct" id="pct">0%</p>
+  </div>
+  <div class="bar" role="progressbar" aria-label="Trophies earned" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="bar"><span id="bar-fill"></span></div>
+  <p class="next-up" id="next-up"></p>
+  <div class="save-row">
+    <button type="button" id="export-btn" class="btn">Export progress</button>
+    <label class="btn file-btn">Import progress<input type="file" id="import-file" accept="application/json,.json" hidden></label>
+    <button type="button" id="reset-btn" class="btn danger">Reset</button>
+    <label class="spoiler-toggle"><input type="checkbox" id="spoiler-toggle"> Spoiler protection — hide story trophies until earned</label>
+  </div>
+</section>
+
+<nav class="tabs" aria-label="Views">
+  <button type="button" class="tab active" data-view="tracker">Tracker</button>
+  <button type="button" class="tab" data-view="roadmap">Platinum roadmap</button>
+  <button type="button" class="tab" data-view="missables">Missables <span class="tab-badge" id="missable-badge">1</span></button>
+</nav>
+
+<main>
+  <section id="view-tracker">
+    <div class="controls">
+      <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind"></div>
+      <div class="control-row">
+        <input type="search" id="search" placeholder="Search trophies…" aria-label="Search trophies">
+        <select id="grade-filter" aria-label="Filter by grade">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+        <label class="check"><input type="checkbox" id="hide-earned"> Hide earned</label>
+      </div>
+      <p class="result-line" id="result-line"></p>
+    </div>
+    <div class="tracker-grid">
+      <ul class="trophy-list" id="trophy-list"></ul>
+      <article class="detail" id="detail" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section id="view-roadmap" hidden>
+    <div class="prose" id="roadmap-intro"></div>
+    <div id="roadmap-stages"></div>
+  </section>
+
+  <section id="view-missables" hidden>
+    <div class="prose" id="missables-body"></div>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Vice Platinum</strong> is an unofficial fan guide. Trophy names, descriptions and grades are PlayStation's official list for Grand Theft Auto VI; every guide is written in this app's own words and cites its sources beside it. Works fully offline — your progress never leaves this device.</p>
+</footer>
+
+<script src="js/trophies-data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/views.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
